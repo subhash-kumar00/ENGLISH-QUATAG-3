@@ -142,7 +142,7 @@
           <h2 class="text-2xl sm:text-3xl font-black text-cyan-400 mb-1" id="resultHeaderTitle">പരീക്ഷാ ഫലം (Exam Result)</h2>
           <p class="text-sm text-slate-400 mb-1" id="resultCandidateInfo"></p>
           <span id="resultSubBadge" class="inline-block text-[11px] text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">
-            ✓ ഫലം പ്രൊഫൈൽ ഹിസ്റ്ററിയിൽ രേഖപ്പെടുത്തിയിട്ടുണ്ട്
+            ✓ ഫലം ഫയർബേസ് പ്രൊഫൈൽ ഹിസ്റ്ററിയിൽ രേഖപ്പെടുത്തിയിട്ടുണ്ട്
           </span>
         </div>
 
@@ -176,7 +176,7 @@
           </div>
         </div>
 
-        <div id="sheetStatus" class="text-xs text-cyan-400 animate-pulse">സ്കോർ ഗൂഗിൾ ഷീറ്റിലേക്ക് രേഖപ്പെടുത്തുന്നു...</div>
+        <div id="sheetStatus" class="text-xs text-cyan-400 animate-pulse">സ്കോർ ഫയർബേസിലേക്ക് രേഖപ്പെടുത്തുന്നു...</div>
 
         <!-- 8 Mark Cut-off Warning Box -->
         <div id="pdfLockNotice" class="hidden max-w-md mx-auto p-3.5 bg-rose-950/40 border border-rose-800/80 rounded-xl text-xs text-rose-300">
@@ -224,17 +224,17 @@
       </div>
     </div>
 
-    <!-- Leaderboard Modal -->
+    <!-- Leaderboard Modal (Firebase Native) -->
     <div id="leaderboardModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
       <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col max-h-[85vh]">
         <div class="flex items-center justify-between border-b border-slate-700 pb-4 mb-4">
           <div>
-            <h3 class="text-xl font-bold text-cyan-400">ലൈവ് റാങ്ക് ലിസ്റ്റ് (Google Sheet)</h3>
+            <h3 class="text-xl font-bold text-cyan-400">ലൈവ് റാങ്ക് ലിസ്റ്റ് (Live Ranking)</h3>
             <p class="text-xs text-slate-400">ആദ്യ ശ്രമത്തിലെ സ്കോർ അടിസ്ഥാനമാക്കി ക്രമീകരിച്ചത്</p>
           </div>
           <button type="button" onclick="closeLeaderboard()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
         </div>
-        <div id="leaderboardLoading" class="py-10 text-center text-sm text-slate-400">ഗൂഗിൾ ഷീറ്റിൽ നിന്നും റാങ്ക് ലിസ്റ്റ് ശേഖരിക്കുന്നു...</div>
+        <div id="leaderboardLoading" class="py-10 text-center text-sm text-slate-400">ഫയർബേസിൽ നിന്നും റാങ്ക് ലിസ്റ്റ് ശേഖരിക്കുന്നു...</div>
         <div class="flex-1 overflow-y-auto custom-scroll pr-1 hidden" id="leaderboardTableWrapper">
           <table class="w-full text-left text-sm">
             <thead class="text-xs uppercase bg-slate-900/80 text-slate-400 sticky top-0">
@@ -270,12 +270,11 @@
   </main>
 
   <footer class="text-center py-3 text-[11px] text-slate-500 border-t border-slate-800">
-    CONDITIONALS, QUESTION TAGS & IDIOMS - SET 3[cite: 18] | PSC Model Exam
+    CONDITIONALS, QUESTION TAGS & IDIOMS - SET 3 | PSC Model Exam
   </footer>
 
   <script>
-    let GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbztE9bExjlH5a9Y_O8pU9CzVZy5zl-wzycDISurGzxqwuWB71Nxquzpg00Ocf2QR9Zb/exec";
-    const QUIZ_SHEET_NAME = "CONDITIONALS, QUESTION TAGS & IDIOMS - SET 3";
+    const FIREBASE_DB_URL = "https://sk-psc-portal-default-rtdb.asia-southeast1.firebasedatabase.app";
     let ORIGINAL_PDF_URL = "https://docs.google.com/document/d/YOUR_GOOGLE_DOC_ID/export?format=pdf";
     let examTitle = "CONDITIONALS, QUESTION TAGS & IDIOMS - SET 3";
 
@@ -284,151 +283,151 @@
         q: "If you don't water these plants, they ________.",
         options: ["would have died", "die", "died", "would die"],
         ans: 1,
-        exp: "Zero Conditional (സാർവത്രിക പ്രകൃതി സത്യം): വെള്ളം ലഭിച്ചില്ലെങ്കിൽ ചെടികൾ വാടിപ്പോകും എന്നത് വസ്തുതയായതിനാൽ simple present (die) വരുന്നു[cite: 18]."
+        exp: "Zero Conditional (സാർവത്രിക പ്രകൃതി സത്യം): വെള്ളം ലഭിച്ചില്ലെങ്കിൽ ചെടികൾ വാടിപ്പോകും എന്നത് വസ്തുതയായതിനാൽ simple present (die) വരുന്നു."
       },
       {
         q: "If I had known your flight timing, I ________ you at the airport.",
         options: ["would have received", "would receive", "will receive", "received"],
         ans: 0,
-        exp: "Third conditional: If clause-ൽ 'had known' വന്നതിനാൽ main clause-ൽ 'would have received' ഉപയോഗിക്കണം[cite: 18]."
+        exp: "Third conditional: If clause-ൽ 'had known' വന്നതിനാൽ main clause-ൽ 'would have received' ഉപയോഗിക്കണം."
       },
       {
         q: "They will not permit you to enter unless you ________ your identity card.",
         options: ["had shown", "showed", "will show", "show"],
         ans: 3,
-        exp: "Unless ക്ലോസിൽ Simple Present Tense (show) ആണ് വരുന്നത്[cite: 18]. ഭാവികാല സൂചകമായ 'will' ആ ക്ലോസിൽ ഉപയോഗിക്കരുത്[cite: 18]."
+        exp: "Unless ക്ലോസിൽ Simple Present Tense (show) ആണ് വരുന്നത്. ഭാവികാല സൂചകമായ 'will' ആ ക്ലോസിൽ ഉപയോഗിക്കരുത്."
       },
       {
         q: "Neither of the girls danced well, ________?",
         options: ["didn't she", "didn't they", "did they", "did she"],
         ans: 2,
-        exp: "'Neither' എന്നത് നെഗറ്റീവ് വാക്കാകയാൽ ടാഗ് പോസിറ്റീവായിരിക്കണം[cite: 18]. പ്ലൂറൽ നൗൺ വന്നതിനാൽ pronoun 'they' വരുന്നു ('did they?')[cite: 18]."
+        exp: "'Neither' എന്നത് നെഗറ്റീവ് വാക്കാകയാൽ ടാഗ് പോസിറ്റീവായിരിക്കണം. പ്ലൂറൽ നൗൺ വന്നതിനാൽ pronoun 'they' വരുന്നു ('did they?')."
       },
       {
         q: "Consider the following sentences regarding question tags:\n1. Some of us are ready to take the test, aren't we?\n2. Most of you have completed the assignment, haven't you?\n3. All of them arrived at the airport on time, didn't they?\nWhich of the statements given above is/are correct?",
         options: ["Only 1 and 3 are correct", "Only 1 and 2 are correct", "All 1, 2 and 3 are correct", "Only 2 and 3 are correct"],
         ans: 2,
-        exp: "Question tag-ൽ 'Some of us' വരുമ്പോൾ pronoun 'we', 'Most of you' വരുമ്പോൾ 'you', 'All of them' വരുമ്പോൾ 'they' ഉപയോഗിക്കണം എന്ന നിയമമനുസരിച്ച് മൂന്ന് വാക്യങ്ങളും ശരിയാണ്[cite: 18]."
+        exp: "Question tag-ൽ 'Some of us' വരുമ്പോൾ pronoun 'we', 'Most of you' വരുമ്പോൾ 'you', 'All of them' വരുമ്പോൾ 'they' ഉപയോഗിക്കണം എന്ന നിയമമനുസരിച്ച് മൂന്ന് വാക്യങ്ങളും ശരിയാണ്."
       },
       {
         q: "Don't touch that live electric wire, ________?",
         options: ["can't you", "will you", "shall we", "won't you"],
         ans: 1,
-        exp: "നെഗറ്റീവ് ഇമ്പറേറ്റീവ് വാക്യങ്ങൾക്ക് (Don't touch...) ക്വസ്റ്റ്യൻ ടാഗ് എപ്പോഴും 'will you?' ആയിരിക്കും[cite: 18]."
+        exp: "നെഗറ്റീവ് ഇമ്പറേറ്റീവ് വാക്യങ്ങൾക്ക് (Don't touch...) ക്വസ്റ്റ്യൻ ടാഗ് എപ്പോഴും 'will you?' ആയിരിക്കും."
       },
       {
         q: "The soldiers daren't retreat from the border, ________?",
         options: ["dare they", "daren't they", "don't they", "do they"],
         ans: 0,
-        exp: "'daren't' എന്നത് നെഗറ്റീവ് മോഡൽ ഓക്സിലറിയായി വന്നിരിക്കുന്നതിനാൽ പോസിറ്റീവ് ടാഗ് ആയ 'dare they?' ശരി[cite: 18]."
+        exp: "'daren't' എന്നത് നെഗറ്റീവ് മോഡൽ ഓക്സിലറിയായി വന്നിരിക്കുന്നതിനാൽ പോസിറ്റീവ് ടാഗ് ആയ 'dare they?' ശരി."
       },
       {
         q: "One must do one's duty sincerely, ________?",
         options: ["shouldn't he", "must he", "mustn't they", "mustn't one"],
         ans: 3,
-        exp: "'One' കർത്താവായി വരുന്ന വാക്യങ്ങളിൽ pronoun ആയി 'one' തന്നെ ടാഗിലും നിലനിർത്തണം ('mustn't one?')[cite: 18]."
+        exp: "'One' കർത്താവായി വരുന്ന വാക്യങ്ങളിൽ pronoun ആയി 'one' തന്നെ ടാഗിലും നിലനിർത്തണം ('mustn't one?')."
       },
       {
         q: "Winning this prestigious tournament was a 'cakewalk' for the champions. The word 'cakewalk' means:",
         options: ["a very difficult challenge", "a slow traditional parade", "an effortless and easy victory", "a sweet baking contest"],
         ans: 2,
-        exp: "'Cakewalk' എന്നാൽ വളരെ എളുപ്പത്തിലും നിഷ്പ്രയാസമായും നേടിയെടുക്കാവുന്ന കാര്യം അല്ലെങ്കിൽ വിജയം എന്നർത്ഥം[cite: 18]."
+        exp: "'Cakewalk' എന്നാൽ വളരെ എളുപ്പത്തിലും നിഷ്പ്രയാസമായും നേടിയെടുക്കാവുന്ന കാര്യം അല്ലെങ്കിൽ വിജയം എന്നർത്ഥം."
       },
       {
         q: "Consider the following sentences regarding idioms:\n1. Beware of his sweet promises, for he is truly a wolf in sheep's clothing.\n2. All the flood victims received relief aid and were on cloud nine.\n3. By taking three major projects simultaneously, he bit off more than he could chew.\nWhich of the statements given above is/are correct?",
         options: ["Only 2 and 3 are correct", "Only 1 and 2 are correct", "All 1, 2 and 3 are correct", "Only 1 and 3 are correct"],
         ans: 3,
-        exp: "രണ്ടാമത്തെ വാക്യം തെറ്റാണ് (പ്രളയബാധിതരായ ദുരിതബാധിതരെ 'on cloud nine' [അതിയായ ആനന്ദം] എന്ന് പറയുന്നത് തെറ്റാണ്)[cite: 18]. 1 ('wolf in sheep's clothing' - കപടവേഷധാരി), 3 ('bit off more than he could chew' - താങ്ങാനാവാത്ത ഭാരം ഏറ്റെടുക്കൽ) എന്നിവ ശരിയാണ്[cite: 18]."
+        exp: "രണ്ടാമത്തെ വാക്യം തെറ്റാണ് (പ്രളയബാധിതരായ ദുരിതബാധിതരെ 'on cloud nine' [അതിയായ ആനന്ദം] എന്ന് പറയുന്നത് തെറ്റാണ്). 1 ('wolf in sheep's clothing' - കപടവേഷധാരി), 3 ('bit off more than he could chew' - താങ്ങാനാവാത്ത ഭാരം ഏറ്റെടുക്കൽ) എന്നിവ ശരിയാണ്."
       },
       {
         q: "He is always offering help because he has 'an axe to grind'. The idiom means:",
         options: ["to sharpen sharp cutting tools", "to have a selfish private interest", "to help others selflessly", "to cut wood in the forest"],
         ans: 1,
-        exp: "'An axe to grind' എന്നാൽ പറയുന്നതിനോ ചെയ്യുന്നതിനോ പിന്നിൽ എന്തെങ്കിലും സ്വാർത്ഥ താത്പര്യമോ ഗൂഢലക്ഷ്യമോ ഉണ്ടായിരിക്കുക എന്നർത്ഥം[cite: 18]."
+        exp: "'An axe to grind' എന്നാൽ പറയുന്നതിനോ ചെയ്യുന്നതിനോ പിന്നിൽ എന്തെങ്കിലും സ്വാർത്ഥ താത്പര്യമോ ഗൂഢലക്ഷ്യമോ ഉണ്ടായിരിക്കുക എന്നർത്ഥം."
       },
       {
         q: "The little granddaughter is the 'apple of his eye'. The idiom means:",
         options: ["a person who is cherished above all others", "an irritating family member", "a person who loves fresh apples", "a person with sharp eye vision"],
         ans: 0,
-        exp: "'Apple of one's eye' എന്നാൽ മറ്റാരേക്കാളും പ്രിയപ്പെട്ട കണ്ണിലുണ്ണിയായ വ്യക്തി എന്നർത്ഥം[cite: 18]."
+        exp: "'Apple of one's eye' എന്നാൽ മറ്റാരേക്കാളും പ്രിയപ്പെട്ട കണ്ണിലുണ്ണിയായ വ്യക്തി എന്നർത്ഥം."
       },
       {
         q: "Caught between strict parents and rebellious friends, he was 'between a rock and a hard place'. The idiom denotes:",
         options: ["standing firm on one's decision", "climbing a dangerous rocky mountain", "working in a stone quarry", "facing a dilemma between two unpleasant options"],
         ans: 3,
-        exp: "'Between a rock and a hard place' എന്നാൽ രണ്ട് മോശം വഴികളിൽ ഒന്നു തിരഞ്ഞെടുക്കേണ്ട ദുർഘടാവസ്ഥയിൽ പെടുക എന്നർത്ഥം[cite: 18]."
+        exp: "'Between a rock and a hard place' എന്നാൽ രണ്ട് മോശം വഴികളിൽ ഒന്നു തിരഞ്ഞെടുക്കേണ്ട ദുർഘടാവസ്ഥയിൽ പെടുക എന്നർത്ഥം."
       },
       {
         q: "Such rare opportunities come only 'once in a blue moon'. What does it mean?",
         options: ["regularly every fortnight", "during the winter season", "very rarely indeed", "on every full moon night"],
         ans: 2,
-        exp: "'Once in a blue moon' എന്നാൽ വളരെ വിരളമായി മാത്രം സംഭവിക്കുന്ന കാര്യം എന്നർത്ഥം[cite: 18]."
+        exp: "'Once in a blue moon' എന്നാൽ വളരെ വിരളമായി മാത്രം സംഭവിക്കുന്ന കാര്യം എന്നർത്ഥം."
       },
       {
         q: "Consider the following sentences regarding conditional clauses:\n1. If you boil water, it turns into steam.\n2. If I had enough time, I would accompany you to the hospital.\n3. If you had informed me yesterday, I will definitely help you.\nWhich of the statements given above is/are incorrect?",
         options: ["Only 3 is incorrect", "All are incorrect", "Only 2 is incorrect", "Only 1 and 2 are incorrect"],
         ans: 0,
-        exp: "മൂന്നാമത്തെ വാക്യം തെറ്റാണ് ('had informed' എന്ന Third conditional-ൽ 'would have helped' വരണം, 'will help' വരാൻ പാടില്ല)[cite: 18]. 1, 2 എന്നിവ ശരിയാണ്[cite: 18]."
+        exp: "മൂന്നാമത്തെ വാക്യം തെറ്റാണ് ('had informed' എന്ന Third conditional-ൽ 'would have helped' വരണം, 'will help' വരാൻ പാടില്ല). 1, 2 എന്നിവ ശരിയാണ്."
       },
       {
         q: "Before she stepped onto the theatre stage, her director said, 'Break a leg!'. The idiom is used to wish:",
         options: ["a physical fracture", "good luck", "a cautious journey", "strict discipline"],
         ans: 1,
-        exp: "സ്റ്റേജ് കലാകാരന്മാർക്ക് ആശംസകൾ നേരാൻ നാടകരംഗത്ത് പ്രയോഗിക്കുന്ന ശൈലിയാണ് 'Break a leg' (Good luck)[cite: 18]."
+        exp: "സ്റ്റേജ് കലാകാരന്മാർക്ക് ആശംസകൾ നേരാൻ നാടകരംഗത്ത് പ്രയോഗിക്കുന്ന ശൈലിയാണ് 'Break a leg' (Good luck)."
       },
       {
         q: "After winning the gold medal, she was 'on cloud nine', ________?",
         options: ["wasn't she", "was she", "hasn't she", "didn't she"],
         ans: 0,
-        exp: "പോസിറ്റീവ് വാക്യത്തിന് നെഗറ്റീവ് ടാഗ് വരുന്നു[cite: 18]. 'was' ഓക്സിലറിയായതിനാൽ 'wasn't she?' ശരി[cite: 18]."
+        exp: "പോസിറ്റീവ് വാക്യത്തിന് നെഗറ്റീവ് ടാഗ് വരുന്നു. 'was' ഓക്സിലറിയായതിനാൽ 'wasn't she?' ശരി."
       },
       {
         q: "The idiom 'Be on cloud nine' denotes:",
         options: ["being daydreaming and lazy", "travelling in a high airplane", "feeling sad and depressed", "being extremely joyful and delighted"],
         ans: 3,
-        exp: "'On cloud nine' എന്നാൽ അതിയായ സന്തോഷവും ആനന്ദവും അനുഭവിക്കുക എന്നർത്ഥം[cite: 18]."
+        exp: "'On cloud nine' എന്നാൽ അതിയായ സന്തോഷവും ആനന്ദവും അനുഭവിക്കുക എന്നർത്ഥം."
       },
       {
         q: "When his lies were caught red-handed, the officer had to 'eat humble pie'. The idiom means:",
         options: ["to resign from office proudly", "to accuse others of the crime", "to admit one's mistake and apologize submissively", "to eat cheap and tasteless food"],
         ans: 2,
-        exp: "'Eat humble pie' എന്നാൽ തെറ്റ് സമ്മതിച്ച് വിനയാന്വിതനായി മാപ്പുപറയുക എന്നർത്ഥം[cite: 18]."
+        exp: "'Eat humble pie' എന്നാൽ തെറ്റ് സമ്മതിച്ച് വിനയാന്വിതനായി മാപ്പുപറയുക എന്നർത്ഥം."
       },
       {
         q: "Consider the following sentences:\n1. You believe that he is guilty, isn't he?\n2. I think she speaks French fluently, doesn't she?\n3. Had the doctor arrived on time, the patient's life would have been saved.\nWhich of the statements given above is/are incorrect?",
         options: ["Only 1 and 3 are incorrect", "Only 1 is incorrect", "Only 2 is incorrect", "Only 3 is incorrect"],
         ans: 1,
-        exp: "ഒന്നാമത്തെ വാക്യം തെറ്റാണ്[cite: 18]. 'You believe' എന്ന് കർത്താവായി വരുമ്പോൾ ആ ഭാഗത്തെ അടിസ്ഥാനമാക്കി 'don't you?' എന്നാണ് ടാഗ് നൽകേണ്ടത് ('isn't he' തെറ്റാണ്)[cite: 18]. 2, 3 എന്നിവ ശരിയാണ്[cite: 18]."
+        exp: "ഒന്നാമത്തെ വാക്യം തെറ്റാണ്. 'You believe' എന്ന് കർത്താവായി വരുമ്പോൾ ആ ഭാഗത്തെ അടിസ്ഥാനമാക്കി 'don't you?' എന്നാണ് ടാഗ് നൽകേണ്ടത് ('isn't he' തെറ്റാണ്). 2, 3 എന്നിവ ശരിയാണ്."
       },
       {
         q: "Publishing his research paper in this world journal was another 'feather in his cap'. The idiom means:",
         options: ["a humorous joke", "an achievement to be very proud of", "a traditional tribal headgear", "a bird hunting expedition"],
         ans: 1,
-        exp: "'Feather in one's cap' എന്നാൽ അഭിമാനിക്കാവുന്ന വലിയൊരു നേട്ടം എന്നർത്ഥം[cite: 18]."
+        exp: "'Feather in one's cap' എന്നാൽ അഭിമാനിക്കാവുന്ന വലിയൊരു നേട്ടം എന്നർത്ഥം."
       },
       {
         q: "If the architect had planned properly, the building ________ during the cyclone.",
         options: ["wouldn't have collapsed", "didn't collapse", "won't collapse", "wouldn't collapse"],
         ans: 0,
-        exp: "Third conditional: If clause-ൽ 'had planned' വന്നതിനാൽ main clause-ൽ 'wouldn't have collapsed' വരണം[cite: 18]."
+        exp: "Third conditional: If clause-ൽ 'had planned' വന്നതിനാൽ main clause-ൽ 'wouldn't have collapsed' വരണം."
       },
       {
         q: "You need some medical assistance right now, ________?",
         options: ["need you", "needn't you", "do you", "don't you"],
         ans: 3,
-        exp: "ഇവിടെ 'need' എന്നത് Simple Present Tense-ലെ മെയിൻ വെർബ് ആയതിനാൽ Question tag 'don't you?' ആയിരിക്കും[cite: 18]."
+        exp: "ഇവിടെ 'need' എന്നത് Simple Present Tense-ലെ മെയിൻ വെർബ് ആയതിനാൽ Question tag 'don't you?' ആയിരിക്കും."
       },
       {
         q: "Consider the following sentences regarding idioms and grammar:\n1. The phrase 'from rags to riches' means a wealthy king becoming poor.\n2. She barely knows anything about computers, doesn't she?\n3. If she were selected for the post, she will work hard.\nWhich of the statements given above is/are incorrect?",
         options: ["All are incorrect", "Only 2 and 3 are incorrect", "Only 1 and 3 are incorrect", "Only 1 and 2 are incorrect"],
         ans: 0,
-        exp: "മൂന്ന് വാക്യങ്ങളും തെറ്റാണ്: 1-ൽ 'rags to riches' എന്നാൽ ദരിദ്രൻ ധനികനാകുക എന്നാണ്; 2-ൽ 'barely' നെഗറ്റീവായതിനാൽ ടാഗ് 'does she?' വേണം; 3-ൽ 'were' വരുമ്പോൾ main clause-ൽ 'would work' വരണം ('will work' തെറ്റാണ്)[cite: 18]."
+        exp: "മൂന്ന് വാക്യങ്ങളും തെറ്റാണ്: 1-ൽ 'rags to riches' എന്നാൽ ദരിദ്രൻ ധനികനാകുക എന്നാണ്; 2-ൽ 'barely' നെഗറ്റീവായതിനാൽ ടാഗ് 'does she?' വേണം; 3-ൽ 'were' വരുമ്പോൾ main clause-ൽ 'would work' വരണം ('will work' തെറ്റാണ്)."
       },
       {
         q: "His first poetry book was a mere 'flash in the pan' because he never wrote another line. The idiom denotes:",
         options: ["an early temporary success that was not repeated", "a cooking accident in the kitchen", "a sudden brilliant invention", "an eternal literary masterpiece"],
         ans: 0,
-        exp: "'Flash in the pan' എന്നാൽ തുടക്കത്തിൽ മാത്രം മിന്നിത്തിളങ്ങി പിന്നീട് ആവർത്തിക്കപ്പെടാത്ത ക്ഷണികമായ വിജയം എന്നർത്ഥം[cite: 18]."
+        exp: "'Flash in the pan' എന്നാൽ തുടക്കത്തിൽ മാത്രം മിന്നിത്തിളങ്ങി പിന്നീട് ആവർത്തിക്കപ്പെടാത്ത ക്ഷണികമായ വിജയം എന്നർത്ഥം."
       }
     ];
 
@@ -452,12 +451,16 @@
     const quizScreen = document.getElementById('quizScreen');
     const resultScreen = document.getElementById('resultScreen');
 
+    function cleanTitleForMatch(str) {
+      if (!str) return "";
+      return String(str).replace(/[\s\-_,.:;()\/\\|\[\]]+/g, '').toLowerCase();
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const passedName = urlParams.get('name');
       const passedPhone = urlParams.get('phone');
       const passedTitle = urlParams.get('title');
-      const passedSheet = urlParams.get('sheetUrl');
       const passedPdf = urlParams.get('pdfUrl');
 
       if (passedName && passedName.trim() !== '') {
@@ -465,9 +468,7 @@
       } else {
         try {
           const storedUser = localStorage.getItem('sk_user_name');
-          if (storedUser && storedUser.trim() !== '') {
-            currentUser.name = storedUser.trim();
-          }
+          if (storedUser && storedUser.trim() !== '') currentUser.name = storedUser.trim();
         } catch (e) {}
       }
 
@@ -480,7 +481,6 @@
         document.getElementById('pdfExportExamTitle').innerText = `${examTitle} - ഉത്തര സൂചിക`;
       }
       
-      if (passedSheet) GOOGLE_SHEET_WEBAPP_URL = decodeURIComponent(passedSheet);
       if (passedPdf) ORIGINAL_PDF_URL = decodeURIComponent(passedPdf);
 
       const displayElem = document.getElementById('displayUser');
@@ -503,78 +503,64 @@
                            urlParams.get('view') === 'solution';
 
       if (isReviewMode) {
-        if (motivationScreen) {
-          motivationScreen.classList.add('hidden');
-          motivationScreen.style.setProperty('display', 'none', 'important');
-        }
-
-        if (quizScreen) {
-          quizScreen.classList.add('hidden');
-          quizScreen.classList.remove('flex');
-          quizScreen.style.setProperty('display', 'none', 'important');
-        }
-
-        if (resultScreen) {
-          resultScreen.classList.remove('hidden');
-          resultScreen.style.setProperty('display', 'block', 'important');
-        }
-
-        let prevScore = urlParams.get('score');
-        let prevCorrect = urlParams.get('correct');
-        let prevWrong = urlParams.get('wrong');
-        let prevSkipped = urlParams.get('skipped');
-
-        if ((!prevScore || prevScore === "0.00" || prevScore === "0") && currentUser.phone) {
-          try {
-            const histKey = `sk_history_${currentUser.phone}`;
-            const history = JSON.parse(localStorage.getItem(histKey) || '[]');
-            const matched = history.slice().reverse().find(h => 
-              h.title === examTitle || 
-              h.title === QUIZ_SHEET_NAME ||
-              (h.title && (h.title.includes("CONDITIONALS") || h.title.includes("SET 3")))
-            );
-            if (matched) {
-              prevScore = matched.score;
-              prevCorrect = matched.correct;
-              prevWrong = matched.wrong;
-              prevSkipped = matched.skipped;
-            }
-          } catch(e) {}
-        }
-
-        document.getElementById('resultHeaderTitle').innerText = "കഴിഞ്ഞ പരീക്ഷാ ഫലം & ഉത്തര സൂചിക";
-        document.getElementById('finalScore').innerText = prevScore !== null ? Number(prevScore).toFixed(2) : "0.00";
-        document.getElementById('correctCount').innerText = prevCorrect !== null ? prevCorrect : "0";
-        document.getElementById('wrongCount').innerText = prevWrong !== null ? prevWrong : "0";
-        document.getElementById('skipCount').innerText = prevSkipped !== null ? prevSkipped : "0";
-
-        const statusElem = document.getElementById('sheetStatus');
-        if (statusElem) statusElem.style.display = 'none';
-
-        const subBadge = document.getElementById('resultSubBadge');
-        if (subBadge) subBadge.innerText = "✓ നിങ്ങൾ മുമ്പ് പൂർത്തിയാക്കിയ പരീക്ഷയുടെ ഉത്തരസൂചിക താഴെ നൽകിയിരിക്കുന്നു";
-
-        const badge = document.getElementById('scoreMotivationBadge');
-        if (badge) {
-          badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-cyan-500/60 bg-cyan-950/40 text-cyan-300";
-          badge.innerHTML = `📖 <strong>മുൻപത്തെ സ്കോർ അവലോകനം</strong> (Previous Attempt Review Mode)`;
-        }
-
-        renderReviewOnlySolutions();
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 100);
+        motivationScreen.style.setProperty('display', 'none', 'important');
+        quizScreen.style.setProperty('display', 'none', 'important');
+        resultScreen.classList.remove('hidden');
+        resultScreen.style.setProperty('display', 'block', 'important');
+        loadPreviousAttemptFromFirebase();
         return;
       }
     });
 
+    // 🌟 ഫയർബേസിൽ നിന്ന് മുൻപത്തെ അറ്റംപ്റ്റ് എടുത്തു കാണിക്കുന്നു
+    async function loadPreviousAttemptFromFirebase() {
+      let prevScore = 0, prevCorrect = 0, prevWrong = 0, prevSkipped = 0;
+
+      if (currentUser.phone && currentUser.phone !== "0000000000") {
+        try {
+          const res = await fetch(`${FIREBASE_DB_URL}/users_history/${currentUser.phone}.json`);
+          const data = await res.json();
+          if (data) {
+            const hList = Object.values(data);
+            const cleanT = cleanTitleForMatch(examTitle);
+            const matched = hList.slice().reverse().find(h => cleanTitleForMatch(h.title) === cleanT);
+            if (matched) {
+              prevScore = Number(matched.score || 0);
+              prevCorrect = matched.correct || 0;
+              prevWrong = matched.wrong || 0;
+              prevSkipped = matched.skipped || 0;
+            }
+          }
+        } catch(e) {}
+      }
+
+      document.getElementById('resultHeaderTitle').innerText = "കഴിഞ്ഞ പരീക്ഷാ ഫലം & ഉത്തര സൂചിക";
+      document.getElementById('finalScore').innerText = prevScore.toFixed(2);
+      document.getElementById('correctCount').innerText = prevCorrect;
+      document.getElementById('wrongCount').innerText = prevWrong;
+      document.getElementById('skipCount').innerText = prevSkipped;
+
+      const statusElem = document.getElementById('sheetStatus');
+      if (statusElem) statusElem.style.display = 'none';
+
+      const subBadge = document.getElementById('resultSubBadge');
+      if (subBadge) subBadge.innerText = "✓ നിങ്ങൾ മുമ്പ് പൂർത്തിയാക്കിയ പരീക്ഷയുടെ ഉത്തരസൂചിക താഴെ നൽകിയിരിക്കുന്നു";
+
+      const badge = document.getElementById('scoreMotivationBadge');
+      if (badge) {
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-cyan-500/60 bg-cyan-950/40 text-cyan-300";
+        badge.innerHTML = `📖 <strong>മുൻപത്തെ സ്കോർ അവലോകനം</strong> (Previous Attempt Review Mode)`;
+      }
+
+      renderReviewOnlySolutions();
+      setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 100);
+    }
+
     document.getElementById('fullscreenToggleBtn').onclick = () => {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-          alert(`Error attempting full-screen: ${err.message}`);
-        });
+        document.documentElement.requestFullscreen().catch(err => alert(`Error: ${err.message}`));
       } else {
-        if (document.exitFullscreen) { document.exitFullscreen(); }
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     };
 
@@ -594,7 +580,6 @@
     }
 
     function startExamDirectly() {
-      motivationScreen.classList.add('hidden');
       motivationScreen.style.setProperty('display', 'none', 'important');
       quizScreen.classList.remove('hidden');
       quizScreen.classList.add('flex');
@@ -616,9 +601,7 @@
         timeLeft--;
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
-        const mStr = minutes < 10 ? '0' + minutes : minutes;
-        const sStr = seconds < 10 ? '0' + seconds : seconds;
-        timerDisplay.innerText = `${mStr}:${sStr}`;
+        timerDisplay.innerText = `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 
         if (timeLeft <= 180) {
           timerDisplay.classList.remove('text-cyan-400');
@@ -670,11 +653,29 @@
       handleReportQuestion(currentIndex + 1);
     });
 
-    function handleReportQuestion(qNum) {
+    // 🌟 ചോദ്യത്തിലെ സംശയം നേരിട്ട് ഫയർബേസിലേക്ക് റിപ്പോർട്ട് ചെയ്യുന്നു
+    async function handleReportQuestion(qNum) {
       const reason = prompt(`ചോദ്യം ${qNum} ൽ എന്തെങ്കിലും തെറ്റുകൾ ഉണ്ടെങ്കിൽ ദയവായി താഴെ രേഖപ്പെടുത്തുക:`);
       if (reason && reason.trim()) {
-        sendReportQuestionToGoogleSheet(qNum, reason.trim());
-        alert(`നന്ദി! ചോദ്യം ${qNum} ലെ സംശയം വിജയകരമായി റിപ്പോർട്ട് ചെയ്തിരിക്കുന്നു.`);
+        try {
+          await fetch(`${FIREBASE_DB_URL}/reported_questions.json`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              exam: examTitle,
+              question: `ചോദ്യം ${qNum}`,
+              questionNumber: qNum,
+              reason: reason.trim(),
+              candidate: currentUser.name,
+              phone: currentUser.phone,
+              date: new Date().toISOString().split('T')[0],
+              timestamp: Date.now()
+            })
+          });
+          alert(`നന്ദി! ചോദ്യം ${qNum} ലെ സംശയം അഡ്മിൻ പാനലിലേക്ക് വിജയകരമായി റിപ്പോർട്ട് ചെയ്തു.`);
+        } catch (e) {
+          alert('റിപ്പോർട്ട് ചെയ്യുന്നതിൽ തടസ്സം നേരിട്ടു.');
+        }
       }
     }
 
@@ -707,12 +708,8 @@
     }
 
     document.getElementById('nextBtn').onclick = () => {
-      if (currentIndex < questionsData.length - 1) {
-        currentIndex++;
-        renderQuestion(currentIndex);
-      } else {
-        finishExam();
-      }
+      if (currentIndex < questionsData.length - 1) { currentIndex++; renderQuestion(currentIndex); }
+      else { finishExam(); }
     };
 
     document.getElementById('prevBtn').onclick = () => {
@@ -721,12 +718,8 @@
 
     document.getElementById('skipBtn').onclick = () => {
       userAnswers[currentIndex] = null;
-      if (currentIndex < questionsData.length - 1) {
-        currentIndex++;
-        renderQuestion(currentIndex);
-      } else {
-        finishExam();
-      }
+      if (currentIndex < questionsData.length - 1) { currentIndex++; renderQuestion(currentIndex); }
+      else { finishExam(); }
     };
 
     document.getElementById('finishMidBtn').onclick = () => {
@@ -780,25 +773,6 @@
         badge.innerHTML = `💪 <strong>തളരരുത്!</strong> വ്യാകരണ നിയമങ്ങൾ കൂടുതൽ വ്യക്തമായി പഠിച്ച് വീണ്ടും പരിശീലിക്കുക.`;
       }
 
-      try {
-        if (currentUser && currentUser.phone && currentUser.phone !== "0000000000") {
-          const historyKey = `sk_history_${currentUser.phone}`;
-          let history = JSON.parse(localStorage.getItem(historyKey) || '[]');
-          
-          history = history.filter(h => !(h.title && (h.title === examTitle || h.title === QUIZ_SHEET_NAME)));
-          history.push({
-            title: examTitle,
-            sheetName: QUIZ_SHEET_NAME,
-            score: formattedScore,
-            correct: correct,
-            wrong: wrong,
-            skipped: skipped,
-            date: new Date().toLocaleDateString('ml-IN', { day: 'numeric', month: 'short', year: 'numeric' })
-          });
-          localStorage.setItem(historyKey, JSON.stringify(history));
-        }
-      } catch (err) {}
-
       const downloadBtn = document.getElementById('downloadOriginalNoteBtn');
       const lockNotice = document.getElementById('pdfLockNotice');
 
@@ -820,16 +794,60 @@
       resultScreen.style.setProperty('display', 'block', 'important');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      sendResultToGoogleSheet({
+      sendResultToFirebase({
         name: currentUser.name,
         phone: currentUser.phone,
-        score: formattedScore,
+        score: scoreNum,
         correct: correct,
         wrong: wrong,
-        skipped: skipped,
-        wrongQuestions: wrongQuestionsList,
-        wrongQuestionsArray: wrongQuestionsList
+        skipped: skipped
       });
+    }
+
+    // 🌟 ഫയർബേസിലേക്ക് മാർക്കുകൾ തത്സമയം സേവ് ചെയ്യുന്നു
+    async function sendResultToFirebase(payload) {
+      const statusDiv = document.getElementById('sheetStatus');
+      if (!payload.phone || payload.phone === "0000000000") {
+        statusDiv.innerText = "✓ മാർക്ക് സ്ക്രീനിൽ ലഭ്യമാണ് (ലോഗിൻ ചെയ്തിട്ടില്ല).";
+        statusDiv.classList.remove('animate-pulse');
+        return;
+      }
+
+      const cleanExamKey = cleanTitleForMatch(examTitle);
+      const todayDate = new Date().toISOString().split('T')[0];
+
+      try {
+        await fetch(`${FIREBASE_DB_URL}/ranks/${cleanExamKey}/${payload.phone}.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: payload.name,
+            phone: payload.phone,
+            score: payload.score,
+            date: todayDate
+          })
+        });
+
+        await fetch(`${FIREBASE_DB_URL}/users_history/${payload.phone}.json`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: examTitle,
+            score: payload.score,
+            correct: payload.correct,
+            wrong: payload.wrong,
+            skipped: payload.skipped,
+            date: todayDate,
+            timestamp: Date.now()
+          })
+        });
+
+        statusDiv.innerText = "✓ മാർക്ക് ഫയർബേസിൽ വിജയകരമായി രേഖപ്പെടുത്തി!";
+        statusDiv.className = "text-xs text-emerald-400 mb-4";
+      } catch (err) {
+        statusDiv.innerText = "ഡാറ്റ സേവ് ചെയ്യുന്നതിൽ ചെറിയ തടസ്സം നേരിട്ടു.";
+        statusDiv.className = "text-xs text-rose-400 mb-4";
+      }
     }
 
     function setupClickableReviewCards() {
@@ -854,7 +872,7 @@
         title.innerHTML = `❌ നിങ്ങൾക്ക് തെറ്റിയ ചോദ്യങ്ങൾ`;
         title.className = "text-lg font-bold text-rose-400";
       } else {
-        title.innerHTML = `⏭️ നിങ്ങൾ ഒഴിവാക്കിയ ചോദ്യങ്ങൾ`;
+        title.innerHTML = `⏭️️ നിങ്ങൾ ഒഴിവാക്കിയ ചോദ്യങ്ങൾ`;
         title.className = "text-lg font-bold text-slate-300";
       }
 
@@ -920,74 +938,28 @@
       document.getElementById('filterReviewArea').classList.add('hidden');
     };
 
-    function openFeedbackModal() {
-      document.getElementById('feedbackModal').classList.remove('hidden');
-    }
+    function openFeedbackModal() { document.getElementById('feedbackModal').classList.remove('hidden'); }
 
-    function recordFeedbackAndOpenDownload(feedbackVal) {
+    // 🌟 ഫീഡ്ബാക്ക് ഫയർബേസിലേക്ക് അയക്കുന്നു
+    async function recordFeedbackAndOpenDownload(feedbackVal) {
       document.getElementById('feedbackModal').classList.add('hidden');
-      sendFeedbackToGoogleSheet(currentUser.phone, feedbackVal);
-      if (ORIGINAL_PDF_URL) {
-        window.open(ORIGINAL_PDF_URL, '_blank');
-      } else {
-        alert('ഔദ്യോഗിക PDF ലിങ്ക് ഉടൻ ലഭ്യമാക്കുന്നതാണ്.');
+      if (currentUser.phone && currentUser.phone !== "0000000000") {
+        try {
+          await fetch(`${FIREBASE_DB_URL}/feedbacks.json`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              exam: examTitle,
+              phone: currentUser.phone,
+              name: currentUser.name,
+              feedback: feedbackVal,
+              date: new Date().toISOString().split('T')[0]
+            })
+          });
+        } catch (e) {}
       }
-    }
-
-    function sendResultToGoogleSheet(payload) {
-      const statusDiv = document.getElementById('sheetStatus');
-      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) {
-        statusDiv.innerText = "Google Sheet ലിങ്ക് നൽകിയിട്ടില്ല (മാർക്ക് മുകളിൽ ലഭ്യമാണ്).";
-        statusDiv.classList.remove('animate-pulse');
-        return;
-      }
-
-      payload.sheetName = QUIZ_SHEET_NAME;
-
-      fetch(GOOGLE_SHEET_WEBAPP_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(() => {
-        statusDiv.innerText = `✓ മാർക്ക് '${QUIZ_SHEET_NAME}' എന്ന ഷീറ്റ് ടാബിലേക്ക് രേഖപ്പെടുത്തി!`;
-        statusDiv.className = "text-xs text-cyan-400 mb-4";
-      })
-      .catch(() => {
-        statusDiv.innerText = "ഡാറ്റ സേവ് ചെയ്യുന്നതിൽ ചെറിയ തടസ്സം നേരിട്ടു.";
-        statusDiv.className = "text-xs text-rose-400 mb-4";
-      });
-    }
-
-    function sendReportQuestionToGoogleSheet(qNum, reason) {
-      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) return;
-      fetch(GOOGLE_SHEET_WEBAPP_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: "report_question",
-          sheetName: QUIZ_SHEET_NAME,
-          questionNumber: qNum,
-          reason: reason
-        })
-      });
-    }
-
-    function sendFeedbackToGoogleSheet(phone, feedback) {
-      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) return;
-      fetch(GOOGLE_SHEET_WEBAPP_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: "submit_feedback",
-          sheetName: QUIZ_SHEET_NAME,
-          phone: phone,
-          feedback: feedback
-        })
-      });
+      if (ORIGINAL_PDF_URL) window.open(ORIGINAL_PDF_URL, '_blank');
+      else alert('ഔദ്യോഗിക PDF ലിങ്ക് ഉടൻ ലഭ്യമാക്കുന്നതാണ്.');
     }
 
     function renderReviewOnlySolutions() {
@@ -1117,7 +1089,8 @@
       });
     });
 
-    function fetchLiveLeaderboard() {
+    // 🌟 ഫയർബേസിൽ നിന്ന് ലൈവ് റാങ്ക് ലിസ്റ്റ് എടുത്തു കാണിക്കുന്നു
+    async function fetchLiveLeaderboard() {
       const modal = document.getElementById('leaderboardModal');
       const loader = document.getElementById('leaderboardLoading');
       const wrapper = document.getElementById('leaderboardTableWrapper');
@@ -1128,73 +1101,40 @@
       wrapper.classList.add('hidden');
       tbody.innerHTML = '';
 
-      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) {
-        loader.innerText = "Google Apps Script URL സെറ്റ് ചെയ്തിട്ടില്ല.";
-        return;
-      }
+      const cleanKey = cleanTitleForMatch(examTitle);
 
-      fetch(`${GOOGLE_SHEET_WEBAPP_URL}?sheet=${encodeURIComponent(QUIZ_SHEET_NAME)}&_t=${Date.now()}`)
-        .then(res => res.json())
-        .then(data => {
-          loader.classList.add('hidden');
-          wrapper.classList.remove('hidden');
+      try {
+        const res = await fetch(`${FIREBASE_DB_URL}/ranks/${cleanKey}.json`);
+        const data = await res.json();
+        loader.classList.add('hidden');
+        wrapper.classList.remove('hidden');
 
-          const rawList = Array.isArray(data) ? data : (data.leaderboard || []);
+        if (!data) {
+          tbody.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-slate-500">ഇതുവരെ ആരും പരീക്ഷ പൂർത്തിയാക്കിയിട്ടില്ല.</td></tr>';
+          return;
+        }
 
-          if (!rawList || rawList.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-slate-500">ഇതുവരെ ആരും പരീക്ഷ പൂർത്തിയാക്കിയിട്ടില്ല.</td></tr>';
-            return;
-          }
+        let ranks = Object.values(data);
+        ranks.sort((a, b) => Number(b.score || 0) - Number(a.score || 0));
 
-          const seenPhones = new Set();
-          const uniqueLeaderboard = [];
+        ranks.forEach((entry, idx) => {
+          let phoneStr = String(entry.phone || '').replace(/[^0-9]/g, '');
+          if (phoneStr.length >= 10) phoneStr = phoneStr.slice(-10);
+          const masked = (phoneStr && phoneStr.length >= 5) ? phoneStr.substring(0, 5) + '*****' : '---';
 
-          rawList.forEach((entry, index) => {
-            let cleanPhone = String(entry.phone || '').replace(/[^0-9]/g, '');
-            if (cleanPhone.length >= 10) {
-              cleanPhone = cleanPhone.slice(-10);
-            }
-
-            if (cleanPhone && cleanPhone !== "0000000000") {
-              if (!seenPhones.has(cleanPhone)) {
-                seenPhones.add(cleanPhone);
-                entry.originalIndex = index;
-                uniqueLeaderboard.push(entry);
-              }
-            } else {
-              entry.originalIndex = index;
-              uniqueLeaderboard.push(entry);
-            }
-          });
-
-          uniqueLeaderboard.sort((a, b) => {
-            const scoreDiff = parseFloat(b.score) - parseFloat(a.score);
-            if (scoreDiff !== 0) return scoreDiff;
-            return a.originalIndex - b.originalIndex;
-          });
-
-          uniqueLeaderboard.forEach((entry, idx) => {
-            let phoneStr = String(entry.phone || '').replace(/[^0-9]/g, '');
-            if (phoneStr.length >= 10) phoneStr = phoneStr.slice(-10);
-            
-            const masked = (phoneStr && phoneStr.length >= 5) 
-              ? phoneStr.substring(0, 5) + '*****' 
-              : '---';
-
-            const row = document.createElement('tr');
-            row.className = 'hover:bg-slate-700/30 text-slate-300';
-            row.innerHTML = `
-              <td class="py-2.5 px-3 font-mono font-bold">${idx + 1}</td>
-              <td class="py-2.5 px-3 font-medium">${entry.name}</td>
-              <td class="py-2.5 px-3 font-mono text-xs text-slate-400">${masked}</td>
-              <td class="py-2.5 px-3 text-right font-mono font-bold text-cyan-400">${Number(entry.score).toFixed(2)}</td>
-            `;
-            tbody.appendChild(row);
-          });
-        })
-        .catch(() => {
-          loader.innerText = "റാങ്ക് ലിസ്റ്റ് ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ദയവായി അല്പം കഴിഞ്ഞ് ശ്രമിക്കുക.";
+          const row = document.createElement('tr');
+          row.className = 'hover:bg-slate-700/30 text-slate-300';
+          row.innerHTML = `
+            <td class="py-2.5 px-3 font-mono font-bold">${idx + 1}</td>
+            <td class="py-2.5 px-3 font-medium">${entry.name || 'വിദ്യാർത്ഥി'}</td>
+            <td class="py-2.5 px-3 font-mono text-xs text-slate-400">${masked}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-bold text-cyan-400">${Number(entry.score || 0).toFixed(2)}</td>
+          `;
+          tbody.appendChild(row);
         });
+      } catch (e) {
+        loader.innerText = "റാങ്ക് ലിസ്റ്റ് ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ദയവായി അല്പം കഴിഞ്ഞ് ശ്രമിക്കുക.";
+      }
     }
 
     function closeLeaderboard() {
